@@ -320,6 +320,11 @@ int readroms(void)
 
 				osd_fclose(f);
 			}
+			else if (romp->length & ROMFLAG_OPTIONAL)
+			{
+				sprintf (&buf[strlen(buf)], "OPTIONALk %-12s NOT FOUND\n",name);
+				romp ++;
+			}
 			else
 			{
 				/* allow for a NO GOOD DUMP KNOWN rom to be missing */

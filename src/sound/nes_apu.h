@@ -39,6 +39,9 @@ struct NESinterface
    int num;                 /* total number of chips in the machine */
    int region[MAX_NESPSG];  /* DMC regions */
    int volume[MAX_NESPSG];
+   int baseclock;
+	mem_write_handler apu_callback_w[MAX_NESPSG]; /* LBO */
+	mem_read_handler apu_callback_r[MAX_NESPSG]; /* LBO */
 };
 
 READ_HANDLER( NESPSG_0_r );

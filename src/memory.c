@@ -1569,6 +1569,9 @@ void *install_mem_read_handler(int cpu, int start, int end, mem_read_handler han
 		case (FPTR)MRA_BANK16:
 		{
 			hardware = (int)MRA_BANK1 - (int)handler + 1;
+            /* LBO 071200 - added these 2 lines */
+            memoryreadoffset[hardware] = bankreadoffset[hardware] = start;
+            cpu_bankbase[hardware] = memory_find_base(cpu, start);
 			hw_set = 1;
 			break;
 		}
@@ -1659,6 +1662,9 @@ void *install_mem_write_handler(int cpu, int start, int end, mem_write_handler h
 		case (FPTR)MWA_BANK16:
 		{
 			hardware = (int)MWA_BANK1 - (int)handler + 1;
+            /* LBO 071200 - added these 2 lines */
+            memorywriteoffset[hardware] = bankwriteoffset[hardware] = start;
+            cpu_bankbase[hardware] = memory_find_base(cpu, start);
 			hw_set = 1;
 			break;
 		}

@@ -74,6 +74,8 @@ typedef struct queue_s
 #define  APU_WRE2    0x12
 #define  APU_WRE3    0x13
 
+#define  APU_USER	 0x14 /* LBO */
+
 #define  APU_SMASK   0x15
 
 #define  NOISE_LONG     0x4000
@@ -135,7 +137,8 @@ typedef struct dpcm_s
    uint8 cur_byte;
    boolean enabled;
    boolean irq_occurred;
-   uint8 *cpu_mem;
+//   uint8 *cpu_mem;
+   uint8 mem_region; /* LBO */
    signed char vol;
 } dpcm_t;
 
@@ -165,6 +168,10 @@ typedef struct apu
    int buf_pos;
 
 #endif
+
+	/* Callbacks */
+	mem_write_handler apu_callback_w; /* LBO */
+	mem_read_handler apu_callback_r; /* LBO */
 
 } apu_t;
 
