@@ -1,5 +1,4 @@
 # set this to mame, mess or the destination you want to build
-#another CVS test
 TARGET = mame
 # TARGET = mess
 # TARGET = neomame
